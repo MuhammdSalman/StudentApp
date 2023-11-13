@@ -1,0 +1,217 @@
+<div class="container mt-3">
+  <form #studentForm="ngForm" autocomplete="off" (submit)="onSubmitForm()">
+  <button type="submit" class="btn btn-lg btn-info" style="color: white;" (click)="printPage()"><strong>Print</strong></button>
+  <div class="row">
+    <div class="col-sm-6 col-md-6">
+      
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input type="text" id="name" disabled name="studentName" class="form-control" placeholder="Enter student name" 
+          [(ngModel)]="student.name"
+          required #Name="ngModel"
+          [class.is-invalid]="(Name?.errors && Name?.touched)|| (Name.invalid && isErrorOnSubmit)"
+          >
+          <div *ngIf="(Name?.errors && Name?.touched)|| (Name.invalid && isErrorOnSubmit)">
+            <div *ngIf="Name.hasError('required')" class="text-danger">
+              Name is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input type="text" id="email" disabled name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,})$" class="form-control" placeholder="Enter student email"
+            [(ngModel)]="student.emailAddress"
+            required #Email="ngModel"
+            [class.is-invalid]="(Email?.errors && Email?.touched)|| (Email.invalid && isErrorOnSubmit)">
+            <div *ngIf="(Email?.errors && Email?.touched)|| (Email.invalid && isErrorOnSubmit)">
+              <div *ngIf="Email.hasError('required')" class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="Email.hasError('pattern')" class="text-danger">
+                Email is invalid
+              </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Phone</label>
+          <input type="email" id="email" disabled name="phone" class="form-control" placeholder="Enter student phone"
+           [(ngModel)]="student.phoneNumber"
+          required #Phone="ngModel"
+          [class.is-invalid]="(Phone?.errors && Phone?.touched)|| (Phone.invalid && isErrorOnSubmit)"
+          >
+          <div *ngIf="(Phone?.errors && Phone?.touched)|| (Phone.invalid && isErrorOnSubmit)">
+            <div *ngIf="Phone.hasError('required')" class="text-danger">
+              Phone is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Parish</label>
+          <input type="text" id="parish" disabled name="parish" class="form-control" placeholder="Enter parish"
+          [(ngModel)]="student.parish"
+          required #Parish="ngModel"
+          [class.is-invalid]="(Parish?.errors && Parish?.touched)|| (Parish.invalid && isErrorOnSubmit)"
+          >
+          <div *ngIf="(Parish?.errors && Parish?.touched)|| (Parish.invalid && isErrorOnSubmit)">
+            <div *ngIf="Parish.hasError('required')" class="text-danger">
+              Parish is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Program</label>
+          <select class="form-select mb-3" disabled name="program" aria-label=".form-select-lg example" [(ngModel)]="student.programId"
+          required #Program="ngModel"
+          [class.is-invalid]="(Program?.errors && Program?.touched)|| (Program.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select Program</option>
+            <option *ngFor="let item of studentPrograms" [value]="item.id">{{item.name}}</option>
+          </select>
+          <div class="mt-16" *ngIf="(Program?.errors && Program?.touched)|| (Program.invalid && isErrorOnSubmit)">
+            <div *ngIf="Program.hasError('required')" class="text-danger">
+              Program is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message">Shirt Size</label>
+          <select class="form-select mb-3" disabled name="shirt" aria-label=".form-select-lg example" [(ngModel)]="student.shirtSize"
+          required #Shirt="ngModel"
+          [class.is-invalid]="(Shirt?.errors && Shirt?.touched)|| (Shirt.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select shirt size</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+          <div class="mt-16" *ngIf="(Shirt?.errors && Shirt?.touched)|| (Shirt.invalid && isErrorOnSubmit)">
+            <div *ngIf="Shirt.hasError('required')" class="text-danger">
+              Shirt Size is required
+            </div>
+          </div>
+        </div>
+        <!-- <button type="submit" class="btn btn-lg btn-warning float-end"><strong>Submit</strong></button> -->
+      
+    </div>
+    <div class="col-sm-6 col-md-6">
+      <div class="form-group mb-3">
+        <label for="message">Course of Study</label>
+        <select class="form-select mb-3" disabled name="Course" aria-label=".form-select-lg example" [(ngModel)]="studentDetail.studentMealPreference.courseOfStudy"
+        required #Course="ngModel"
+        [class.is-invalid]="(Course?.errors && Course?.touched)|| (Course.invalid && isErrorOnSubmit)">
+          <option value="" selected disabled>Select Course of Study</option>
+          <option value="Computer programming">Computer programming</option>
+          <option value="Data format and coding">Data format and coding</option>
+          <option value="Artificial intelligence">Artificial intelligence</option>
+          <option value="Systems analysis">Systems analysis</option>
+
+        </select>
+        <div class="mt-16" *ngIf="(Course?.errors && Course?.touched)|| (Course.invalid && isErrorOnSubmit)">
+          <div *ngIf="Course.hasError('required')" class="text-danger">
+            Course of Study is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="message">Day</label>
+        <select class="form-select mb-3" disabled name="Day" aria-label=".form-select-lg example" [(ngModel)]="studentDetail.studentMealPreference.meal.day"
+        required #Day="ngModel"
+        [class.is-invalid]="(Day?.errors && Day?.touched)|| (Day.invalid && isErrorOnSubmit)">
+          <option value="" selected disabled>Select day</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Tuesday">Friday</option>
+          <option value="Wednesday">Saturday</option>
+          <option value="Thursday">Sunday</option>
+        </select>
+        <div class="mt-16" *ngIf="(Day?.errors && Day?.touched)|| (Day.invalid && isErrorOnSubmit)">
+          <div *ngIf="Day.hasError('required')" class="text-danger">
+            Day is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="message">Menu</label>
+        <select class="form-select mb-3" disabled name="Menu" aria-label=".form-select-lg example" [(ngModel)]="studentDetail.studentMealPreference.meal.mealType"
+        required #Menu="ngModel"
+        [class.is-invalid]="(Menu?.errors && Menu?.touched)|| (Menu.invalid && isErrorOnSubmit)">
+          <option value="" selected disabled>Select menu</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+        </select>
+        <div class="mt-16" *ngIf="(Menu?.errors && Menu?.touched)|| (Menu.invalid && isErrorOnSubmit)">
+          <div *ngIf="Menu.hasError('required')" class="text-danger">
+            Menu is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="message">Meal</label>
+        <select class="form-select mb-3" disabled multiple name="Meal" aria-label=".form-select-lg example" [(ngModel)]="studentDetail.studentMealPreference.meal.foodTypes"
+        required #Meal="ngModel"
+        [class.is-invalid]="(Meal?.errors && Meal?.touched)|| (Meal.invalid && isErrorOnSubmit)">
+          <!-- <option value="" selected disabled>Select meal</option> -->
+          <option value="Beverage">Beverage</option>
+          <option value="Starch">Starch</option>
+          <option value="Meat">Meat</option>
+          <option value="Vegetable">Vegetable</option>
+        </select>
+        <div class="mt-16" *ngIf="(Meal?.errors && Meal?.touched)|| (Meal.invalid && isErrorOnSubmit)">
+          <div *ngIf="Meal.hasError('required')" class="text-danger">
+            Meal is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="message">Food</label>
+        <select class="form-select mb-3" disabled multiple name="Food" aria-label=".form-select-lg example" [(ngModel)]="studentDetail.studentMealPreference.meal.foodItems"
+        required #Food="ngModel"
+        [class.is-invalid]="(Food?.errors && Food?.touched)|| (Food.invalid && isErrorOnSubmit)">
+          <!-- <option value="" selected disabled>Select Food</option> -->
+
+          <option  value="Water">Water</option>
+          <option  value="Flavoured Water">Flavoured Water</option>
+          <option  value="Mix Drink">Mix Drink</option>
+          <option  value="Fruit Juice">Fruit Juice</option>
+          <option  value="Pasta">Pasta</option>
+          <option  value="Steam vegetable">Steam vegetable</option>
+          <option  value="Raw vegetable">Raw vegetable</option>
+          <option  value="Fry plantain">Fry plantain</option>
+          <option  value="Plain Rice">Plain Rice</option>
+          <option  value="Spanish Rice">Spanish Rice</option>
+          <option  value="Rice & Peas">Rice & Peas</option>
+          <option  value="Boiled Food">Boiled Food</option>
+          <option  value="Curry goat">Curry goat</option>
+          <option  value="Curry chicken">Curry chicken</option>
+          <option  value="Bake chicken">Bake chicken</option>
+          <option  value="Fry chicken">Fry chicken</option>
+          <option  value="Pork">Pork</option>
+          <option  value="Fish">Fish</option>
+          <option  value="Stew beef">Stew beef</option>
+        </select>
+        <div class="mt-16" *ngIf="(Food?.errors && Food?.touched)|| (Food.invalid && isErrorOnSubmit)">
+          <div *ngIf="Meal.hasError('required')" class="text-danger">
+            Food is required
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isInclude('Beverage')" class="image">
+        <img  class="logo w-100" src="../../../assets/images/beverage.jpg" >
+      </div>
+      <div *ngIf="isInclude('Meat')" class="image">
+        <img class="logo w-100" src="../../../assets/images/meat.jpg" >
+      </div>
+      <div *ngIf="isInclude('Starch')" class="image">
+        <img class="logo w-100" src="../../../assets/images/starch.jpg" >
+      </div>
+      <div *ngIf="isInclude('Vegetable')" class="image">
+        <img  class="logo w-100" src="../../../assets/images/veg1.jpg" >
+
+      </div>
+    </div>
+  </div>
+</form>
+</div>

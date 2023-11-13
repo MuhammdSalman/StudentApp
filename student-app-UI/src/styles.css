@@ -1,0 +1,13 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~ngx-toastr/toastr.css';
+@import url('https://use.fontawesome.com/releases/v5.0.8/css/all.css');
+label{
+    font-weight: bold;
+}
+
+.mt-16{
+    margin-top: -16px;
+}
+.fw-800{
+    font-weight: 800;
+}

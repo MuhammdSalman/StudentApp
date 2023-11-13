@@ -1,0 +1,96 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form #kitchenForm="ngForm" autocomplete="off" (submit)="onSubmitForm()">
+        <div class="form-group mb-3">
+          <label for="message">Day</label>
+          <select class="form-select mb-3" name="Day" aria-label=".form-select-lg example" [(ngModel)]="meal.day"
+          required #Day="ngModel"
+          [class.is-invalid]="(Day?.errors && Day?.touched)|| (Day.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Tuesday">Friday</option>
+            <option value="Wednesday">Saturday</option>
+            <option value="Thursday">Sunday</option>
+          </select>
+          <div class="mt-16" *ngIf="(Day?.errors && Day?.touched)|| (Day.invalid && isErrorOnSubmit)">
+            <div *ngIf="Day.hasError('required')" class="text-danger">
+              Day is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message">Menu</label>
+          <select class="form-select mb-3" name="Menu" aria-label=".form-select-lg example" [(ngModel)]="meal.mealType"
+          required #Menu="ngModel"
+          [class.is-invalid]="(Menu?.errors && Menu?.touched)|| (Menu.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select menu</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+          </select>
+          <div class="mt-16" *ngIf="(Menu?.errors && Menu?.touched)|| (Menu.invalid && isErrorOnSubmit)">
+            <div *ngIf="Menu.hasError('required')" class="text-danger">
+              Menu is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message">Meal</label>
+          <select class="form-select mb-3" name="Meal" multiple aria-label=".form-select-lg example" [(ngModel)]="meal.foodType"
+          required #Meal="ngModel"
+          [class.is-invalid]="(Meal?.errors && Meal?.touched)|| (Meal.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select meal</option>
+            <option value="Beverage">Beverage</option>
+            <option value="Starch">Starch</option>
+            <option value="Meat">Meat</option>
+            <option value="Vegetable">Vegetable</option>
+          </select>
+          <div class="mt-16" *ngIf="(Meal?.errors && Meal?.touched)|| (Meal.invalid && isErrorOnSubmit)">
+            <div *ngIf="Meal.hasError('required')" class="text-danger">
+              Meal is required
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="message">Food</label>
+          <select class="form-select mb-3" name="Food" multiple  aria-label=".form-select-lg example" [(ngModel)]="meal.foodItem"
+          required #Food="ngModel"
+          [class.is-invalid]="(Food?.errors && Food?.touched)|| (Food.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select Food</option>
+
+            <option *ngIf="isInclude('Beverage')" value="Water">Water</option>
+            <option *ngIf="isInclude('Beverage')" value="Flavoured Water">Flavoured Water</option>
+            <option *ngIf="isInclude('Beverage')" value="Mix Drink">Mix Drink</option>
+            <option *ngIf="isInclude('Beverage')" value="Fruit Juice">Fruit Juice</option>
+            <option *ngIf="isInclude('Vegetable')" value="Pasta">Pasta</option>
+            <option *ngIf="isInclude('Vegetable')" value="Steam vegetable">Steam vegetable</option>
+            <option *ngIf="isInclude('Vegetable')" value="Raw vegetable">Raw vegetable</option>
+            <option *ngIf="isInclude('Vegetable')" value="Fry plantain">Fry plantain</option>
+            <option *ngIf="isInclude('Starch')" value="Plain Rice">Plain Rice</option>
+            <option *ngIf="isInclude('Starch')" value="Spanish Rice">Spanish Rice</option>
+            <option *ngIf="isInclude('Starch')" value="Rice & Peas">Rice & Peas</option>
+            <option *ngIf="isInclude('Starch')" value="Boiled Food">Boiled Food</option>
+            <option *ngIf="isInclude('Meat')" value="Curry goat">Curry goat</option>
+            <option *ngIf="isInclude('Meat')" value="Curry chicken">Curry chicken</option>
+            <option *ngIf="isInclude('Meat')" value="Bake chicken">Bake chicken</option>
+            <option *ngIf="isInclude('Meat')" value="Fry chicken">Fry chicken</option>
+            <option *ngIf="isInclude('Meat')" value="Pork">Pork</option>
+            <option *ngIf="isInclude('Meat')" value="Fish">Fish</option>
+            <option *ngIf="isInclude('Meat')" value="Stew beef">Stew beef</option>
+          </select>
+          <div class="mt-16" *ngIf="(Food?.errors && Food?.touched)|| (Food.invalid && isErrorOnSubmit)">
+            <div *ngIf="Meal.hasError('required')" class="text-danger">
+              Food is required
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-warning float-end mt-3"><strong>Post</strong></button>
+      </form>
+    </div>
+  </div>
+</div>

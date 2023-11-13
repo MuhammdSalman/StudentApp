@@ -1,0 +1,95 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form #studentForm="ngForm" autocomplete="off" (submit)="onSubmitForm()">
+        <div class="form-group mb-3">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="studentName" class="form-control" placeholder="Enter student name" 
+          [(ngModel)]="student.name"
+          required #Name="ngModel"
+          [class.is-invalid]="(Name?.errors && Name?.touched)|| (Name.invalid && isErrorOnSubmit)"
+          >
+          <div *ngIf="(Name?.errors && Name?.touched)|| (Name.invalid && isErrorOnSubmit)">
+            <div *ngIf="Name.hasError('required')" class="text-danger">
+              Name is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,})$" class="form-control" placeholder="Enter student email"
+            [(ngModel)]="student.emailAddress"
+            required #Email="ngModel"
+            [class.is-invalid]="(Email?.errors && Email?.touched)|| (Email.invalid && isErrorOnSubmit)">
+            <div *ngIf="(Email?.errors && Email?.touched)|| (Email.invalid && isErrorOnSubmit)">
+              <div *ngIf="Email.hasError('required')" class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="Email.hasError('pattern')" class="text-danger">
+                Email is invalid
+              </div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Phone</label>
+          <input type="email" id="email" name="phone" class="form-control" placeholder="Enter student phone"
+           [(ngModel)]="student.phoneNumber"
+          required #Phone="ngModel"
+          [class.is-invalid]="(Phone?.errors && Phone?.touched)|| (Phone.invalid && isErrorOnSubmit)"
+          >
+          <div *ngIf="(Phone?.errors && Phone?.touched)|| (Phone.invalid && isErrorOnSubmit)">
+            <div *ngIf="Phone.hasError('required')" class="text-danger">
+              Phone is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Parish</label>
+          <input type="text" id="parish" name="parish" class="form-control" placeholder="Enter parish"
+          [(ngModel)]="student.parish"
+          required #Parish="ngModel"
+          [class.is-invalid]="(Parish?.errors && Parish?.touched)|| (Parish.invalid && isErrorOnSubmit)"
+          >
+          <div *ngIf="(Parish?.errors && Parish?.touched)|| (Parish.invalid && isErrorOnSubmit)">
+            <div *ngIf="Parish.hasError('required')" class="text-danger">
+              Parish is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Program</label>
+          <select class="form-select mb-3" name="program" aria-label=".form-select-lg example" [(ngModel)]="student.programId"
+          required #Program="ngModel"
+          [class.is-invalid]="(Program?.errors && Program?.touched)|| (Program.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select Program</option>
+            <option *ngFor="let item of studentPrograms" [value]="item.id">{{item.name}}</option>
+          </select>
+          <div class="mt-16" *ngIf="(Program?.errors && Program?.touched)|| (Program.invalid && isErrorOnSubmit)">
+            <div *ngIf="Program.hasError('required')" class="text-danger">
+              Program is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message">Shirt Size</label>
+          <select class="form-select mb-3" name="shirt" aria-label=".form-select-lg example" [(ngModel)]="student.shirtSize"
+          required #Shirt="ngModel"
+          [class.is-invalid]="(Shirt?.errors && Shirt?.touched)|| (Shirt.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select shirt size</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
+          <div class="mt-16" *ngIf="(Shirt?.errors && Shirt?.touched)|| (Shirt.invalid && isErrorOnSubmit)">
+            <div *ngIf="Shirt.hasError('required')" class="text-danger">
+              Shirt Size is required
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-warning float-end"><strong>Submit</strong></button>
+      </form>
+    </div>
+  </div>
+</div>

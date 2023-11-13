@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row mt-2 mb-2">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-lg btn-dark" (click)="newEnrollment()"><strong>New Enrollment</strong></button>
+    </div>
+  </div>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Parish</th>
+        <th scope="col">Program</th>
+        <th scope="col">Shirt Size</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of students;let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.emailAddress}}</td>
+        <td>{{item.phoneNumber}}</td>
+        <td>{{item.parish}}</td>
+        <td>{{item.program.name}}</td>
+        <td>{{item.shirtSize}}</td>
+        <td class="text-center"><i class="fa fa-info-circle fa-fw mr-1" (click)="openDetail(item.id)"></i></td>
+      </tr>
+      <tr *ngIf="students.length === 0" class="text-center">
+        <td colspan="7">No record exist</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

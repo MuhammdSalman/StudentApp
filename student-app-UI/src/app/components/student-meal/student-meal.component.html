@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <!-- <h3 class="fw-800 mt-3 mb-3">Create Student Meal Preference</h3> -->
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form #studentMealForm="ngForm" autocomplete="off" (submit)="onSubmitForm()">
+        
+        <div class="form-group mb-3">
+          <label for="email">Student</label>
+          <select class="form-select mb-3" name="Student" aria-label=".form-select-lg example" [(ngModel)]="studentMeal.studentId"
+          required #Student="ngModel"
+          [class.is-invalid]="(Student?.errors && Student?.touched)|| (Student.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select Student</option>
+            <option *ngFor="let item of students" [value]="item.id">{{item.name}}</option>
+          </select>
+          <div class="mt-16" *ngIf="(Student?.errors && Student?.touched)|| (Student.invalid && isErrorOnSubmit)">
+            <div *ngIf="Student.hasError('required')" class="text-danger">
+              Student is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="message">Course of Study</label>
+          <select class="form-select mb-3" name="Day" aria-label=".form-select-lg example" [(ngModel)]="studentMeal.courseOfStudy"
+          required #Course="ngModel"
+          [class.is-invalid]="(Course?.errors && Course?.touched)|| (Course.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select Course of Study</option>
+            <option value="Computer programming">Computer programming</option>
+            <option value="Data format and coding">Data format and coding</option>
+            <option value="Artificial intelligence">Artificial intelligence</option>
+            <option value="Systems analysis">Systems analysis</option>
+
+          </select>
+          <div class="mt-16" *ngIf="(Course?.errors && Course?.touched)|| (Course.invalid && isErrorOnSubmit)">
+            <div *ngIf="Course.hasError('required')" class="text-danger">
+              Course of Study is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Meal</label>
+          <select class="form-select mb-3" name="Meal" aria-label=".form-select-lg example" [(ngModel)]="studentMeal.mealId"
+          required #Meal="ngModel"
+          [class.is-invalid]="(Meal?.errors && Meal?.touched)|| (Meal.invalid && isErrorOnSubmit)">
+            <option value="" selected disabled>Select Meal</option>
+            <option *ngFor="let item of meals" [value]="item.id">{{item.mealType}} - {{item.foodType}} - {{item.foodItem}}</option>
+          </select>
+          <div class="mt-16" *ngIf="(Meal?.errors && Meal?.touched)|| (Meal.invalid && isErrorOnSubmit)">
+            <div *ngIf="Meal.hasError('required')" class="text-danger">
+              Meal is required
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-warning float-end"><strong>Post</strong></button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row mt-2 mb-2">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-lg btn-dark" (click)="newPost()"><strong>New</strong></button>
+    </div>
+  </div>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student</th>
+        <th scope="col">Course of study</th>
+        <th scope="col">Menu</th>
+        <th scope="col">Meal</th>
+        <th scope="col">Food</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of studentPreferences;let i = index;">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.student?.name}}</td>
+        <td>{{item.courseOfStudy}}</td>
+        <td>{{item.meal?.foodType}}</td>
+        <td>{{item.meal?.mealType}}</td>
+        <td>{{item.meal?.foodItem}}</td>
+      </tr>
+      <tr *ngIf="studentPreferences.length === 0" class="text-center">
+        <td colspan="6">No record exist</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
